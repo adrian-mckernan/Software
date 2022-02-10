@@ -1,0 +1,1 @@
+ltc6946_v0_1\startup_stm32f051x8.o: startup_stm32f051x8.s
