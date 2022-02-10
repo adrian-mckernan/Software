@@ -1,0 +1,413 @@
+﻿<Page x:Class="LTC6946.Home"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:LTC6946"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1000"
+      Title="Adrian McKernan PLL v1.0">
+
+    <Grid Background="LightGray">
+        <TabControl  Name="Tabs" Margin="0,0,0,-351">
+            <TabItem Header="General" Name="General_tab"  Width="150">
+                <StackPanel  Orientation="Vertical" Margin="10,5,10,10">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Background="LightCyan" Margin="5,5,5,5">
+                        <TextBox Text="LTC6946 Main control"  FontSize="25" Background="LightGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Label Content="Frequency"  FontSize="20" VerticalAlignment="Center"/>
+                        <xctk:DecimalUpDown Name="GlobalFrequency" Value="2400" Height="40" FontSize="20" Width="150" IsEnabled="True" ValueChanged="GlobalFrequency_ValueChanged" />
+                        <Label Content="MHz    "  FontSize="20" VerticalAlignment="Center"/>
+                        <Label Content="Comm Port"  FontSize="20" VerticalAlignment="Center"/>
+                        <ComboBox Name="CommPorts" Width="100" Height="40" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                        </ComboBox>
+                        <ToggleButton Name="SerialBtn" Content="Connect" FontSize="20" Checked="SerialBtnCheck" Unchecked="SerialBtnUnchecked"  Margin="10" Width="120" HorizontalAlignment="Center" />
+                        <Label Content="Port Status"  FontSize="20" VerticalAlignment="Center"/>
+                        <Ellipse Name="SerialEllipse" Fill="Red" Width="20" Height="20"></Ellipse>
+
+                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Program" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Label Grid.Column="1"  FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                        Board 
+                        Number
+                            </TextBlock>
+                        </Label>
+                        <Label Grid.Column="2" Content="Locked" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Grid.Column="3"   FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        Local
+                            </TextBlock>
+                        </Label>
+                        <Label Grid.Column="4"   FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        Mute
+                            </TextBlock>
+                        </Label>
+                        <Label Grid.Column="5" Content="Frequency"  FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Label Grid.Column="6" Content="Phase"  FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Grid.Column="7" Content="Attenuation"  FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Label Grid.Column="8"  FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                        Output 
+                        Power
+                        </TextBlock>
+                        </Label>
+                    </Grid>
+                    <!--<Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <CheckBox Grid.Column="0" Name="CBox_Progam" HorizontalAlignment="Center"/>
+                <Label Grid.Column="1" Content="{Binding BoardNumber}"  FontSize="18" HorizontalAlignment="Center" />
+                <Ellipse Grid.Column="2" Fill="Green" Height="20" Stroke="Black" Width="20" HorizontalAlignment="Center"/>
+                -->
+                    <!--<CheckBox Name="CBox_Freq" Command="{Binding RelativeSource={RelativeSource
+                                    AncestorType=UserControl},Path=DataContext.OnClick_CBfreq}" IsChecked="False" />-->
+                    <!--
+                <CheckBox Grid.Column="3" Name="CBox_Freq" IsChecked="{Binding Enable_freq_Box}" HorizontalAlignment="Center"/>
+
+                <xctk:IntegerUpDown Grid.Column="4" Value="{Binding TargetFrequency}" Width="100" IsEnabled="{Binding Enable_freq_Box}" HorizontalAlignment="Center"/>
+                -->
+                    <!--<StackPanel Orientation="Vertical" >
+                                    <CheckBox  Name="Freq_01_local"/>
+                                    <TextBlock> <LineBreak/>  enable</TextBlock>
+                                </StackPanel>-->
+                    <!--
+
+                <xctk:IntegerUpDown Grid.Column="5" Value="{Binding Phase}" DefaultValue="180" Width="100" HorizontalAlignment="Center"/>
+                <xctk:DecimalUpDown Grid.Column="6" Value="{Binding Power}" DefaultValue="0" Width="100" HorizontalAlignment="Center" Margin="28,0"/>
+            </Grid>-->
+
+
+
+                    <ItemsControl Name="Board_interface">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <CheckBox Grid.Column="0"  IsChecked="{Binding Enable_program_board}" Name="CBox_Progam" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Label Grid.Column="1" Content="{Binding BoardNumber}"  FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <Ellipse Grid.Column="2" Fill="{Binding LockColour}"  Height="20" Stroke="Black" Width="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <CheckBox Grid.Column="3" Name="CBox_Freq"    IsChecked="{Binding Enable_freq_Box}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <CheckBox Grid.Column="4" Name="CBox_Mute"    IsChecked="{Binding Mute_Box}"  Click="BtnMute_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <xctk:DecimalUpDown Grid.Column="5" Value="{Binding TargetFrequency}" Width="100" IsEnabled="{Binding enable_freq_Box }" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <xctk:IntegerUpDown Grid.Column="6" Value="{Binding Phase}" DefaultValue="180" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <xctk:DecimalUpDown Grid.Column="7" Value="{Binding Attenuation}" DefaultValue="0" Increment=".5" Maximum="15.5" Minimum="0"  Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" TargetUpdated="Attenuation_TargetUpdated"/>
+                                    <Label Grid.Column="8" Content="{Binding OutPower}"  FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Name="LabelOutputPower" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Name="btnProgAll" Click="BtnProgAll_Click" Margin="20" Width="90">
+                            <StackPanel>
+                                <TextBlock Text="Program" HorizontalAlignment="Center"/>
+                                <TextBlock Text="ALL Boards" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Name="btnProgSelected" Click="BtnProgSelected_Click" Margin="20" Width="90">
+                            <StackPanel>
+                                <TextBlock Text="Program" HorizontalAlignment="Center"/>
+                                <TextBlock Text="selected Boards" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Name="btnCheckLockAll" Click="BtnCheckLockAll_Click" IsEnabled="False" Margin="20" Width="90" ToolTip="This doesn't currently work">
+                            <StackPanel>
+                                <TextBlock Text="Check Lock" HorizontalAlignment="Center"/>
+                                <TextBlock Text="All Boards" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Name="btnCheckLockSelected" Click="BtnCheckLockSelected_Click" Margin="20" Width="90" IsEnabled="False" ToolTip="This doesn't currently work">
+                            <StackPanel>
+                                <TextBlock Text="Check Lock" HorizontalAlignment="Center"/>
+                                <TextBlock Text="selected Boards" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Name="btnPhasePowerAll" Click="BtnPhasePowerAll_Click" Margin="20" Width="90">
+                            <StackPanel>
+                                <TextBlock Text="Set Phase Power" HorizontalAlignment="Center"/>
+                                <TextBlock Text="All Boards" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Name="btnPhasePowerSelected" Click="BtnPhasePowerSelected_Click" Margin="20" Width="90">
+                            <StackPanel>
+                                <TextBlock Text="Set Phase Power" HorizontalAlignment="Center"/>
+                                <TextBlock Text="selected Boards" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+
+                </StackPanel>
+
+            </TabItem>
+            <TabItem Header="Registers" HorizontalAlignment="Right" Width="150" Name="Reg_tab"  >
+                <StackPanel  Orientation="Vertical" Margin="10,5,10,10">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Background="LightCyan" Margin="5,5,5,5">
+                        <TextBox Text="LTC6946 Register control"  FontSize="25" Background="LightGray"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" >
+                        
+                        <ComboBox Name="Reg_CB_Board" Width="100" Height="20" SelectionChanged="Reg_CB_Board_SelectionChanged" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding BoardNumber}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Label Content="Board" />
+                        <TextBlock Width="30">
+                            
+                        </TextBlock>
+                        <!--<Button Name="btnPause" Click="BtnPause_Click"   Width="100">
+                            <StackPanel>
+                                <TextBlock Text="Pause" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>-->
+
+                    </StackPanel>
+                    <Grid DataContext="{Binding ElementName=Reg_CB_Board, Path=SelectedItem}" Name="Reg_grid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0" Content="Register 1" />
+                        <Label Grid.Column="1" Grid.Row="0" Content="Register 2" />
+                        <Label Grid.Column="2" Grid.Row="0" Content="Register 7" />
+                        <Label Grid.Column="3" Grid.Row="0" Content="Register 8" />
+                        <Label Grid.Column="4" Grid.Row="0" Content="Register 9" />
+                        <Label Grid.Column="5" Grid.Row="0" Content="Register A" />
+                        <StackPanel Name="SPreg1" Grid.Column="0" Grid.Row="1">
+                            <CheckBox Content="TLO" Name="CB_TLO" Click="Reg01_Click" IsChecked="{Binding Reg01.TLO}"/>
+                            <CheckBox Content="THI" Name="CB_THI" Click="Reg01_Click" IsChecked="{Binding Reg01.THI}"/>
+                            <CheckBox Content="LOCK" Name="CB_LOCK" Click="Reg01_Click" IsChecked="{Binding Reg01.LOCK}"/>
+                            <CheckBox Content="ALCLO" Name="CB_ALCLO" Click="Reg01_Click" IsChecked="{Binding Reg01.ALCLO}"/>
+                            <CheckBox Content="ALCHI" Name="CB_ALCHI" Click="Reg01_Click" IsChecked="{Binding Reg01.ALCHI}"/>
+                            <CheckBox Content="UNLOCK" Name="CB_UNLOCK" Click="Reg01_Click" IsChecked="{Binding Reg01.UNLOCK}"/>
+                        </StackPanel>
+                        <StackPanel Name="SPreg2" Grid.Column="1" Grid.Row="1">
+                            <CheckBox Content="POR" Name="POR" Click="Reg02_Click" IsChecked="{Binding Reg02.POR}"/>
+                            <CheckBox Content="OMUTE" Name="OMUTE" Click="Reg02_Click" IsChecked="{Binding Reg02.OMUTE}"/>
+                            <CheckBox Content="MTCAL" Name="MTCAL" Click="Reg02_Click" IsChecked="{Binding Reg02.MTCAL}"/>
+                            <CheckBox Content="PDREFO" Name="PDREFO" Click="Reg02_Click" IsChecked="{Binding Reg02.PDREFO}"/>
+                            <CheckBox Content="PDOUT" Name="PDOUT" Click="Reg02_Click" IsChecked="{Binding Reg02.PDOUT}"/>
+                            <CheckBox Content="PDVCO" Name="PDVCO" Click="Reg02_Click" IsChecked="{Binding Reg02.PDVCO}"/>
+                            <CheckBox Content="PDPLL" Name="PDPLL" Click="Reg02_Click" IsChecked="{Binding Reg02.PDPLL}"/>
+                            <CheckBox Content="PDALL" Name="PDALL" Click="Reg02_Click" IsChecked="{Binding Reg02.PDALL}"/>
+
+                        </StackPanel>
+                        <StackPanel Name="SPreg7" Grid.Column="2" Grid.Row="1">
+                            <CheckBox Content="LKEN" Name="LKEN" Click="Reg07_Click" IsChecked="{Binding Reg07.LKEN}"/>
+                            <CheckBox Content="CAL" Name="CAL" Click="Reg07_Click" IsChecked="{Binding Reg07.CAL}"/>
+                            <CheckBox Content="ALCULOK" Name="ALCULOK" Click="Reg07_Click" IsChecked="{Binding Reg07.ALCULOK}"/>
+                            <CheckBox Content="ALCCAL" Name="ALCCAL" Click="Reg07_Click" IsChecked="{Binding Reg07.ALCCAL}"/>
+                            <CheckBox Content="ALCMON" Name="ALCMON" Click="Reg07_Click" IsChecked="{Binding Reg07.ALCMON}"/>
+                            <CheckBox Content="ALCEN" Name="ALCEN" Click="Reg07_Click"   IsChecked="{Binding Reg07.ALCEN}"/>
+
+                        </StackPanel>
+                        <StackPanel Name="SPreg8" Grid.Column="3" Grid.Row="1">
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox Name="CB_RFO" Width="100" ItemsSource="{Binding Reg08.RFO}" SelectionChanged="CB_RFO_SelectionChanged" />
+                                <Label Content="RFO"/>
+                            </StackPanel>
+                            <StackPanel  Orientation="Horizontal">
+                                <ComboBox Name="CB_FILT" Width="100" ItemsSource="{Binding Reg08.FILT}" SelectionChanged="CB_FILT_SelectionChanged"/>
+                                <Label Content="FILT"/>
+                            </StackPanel>
+                            <!--<StackPanel  Orientation="Horizontal">
+                                <ComboBox Name="CB_OD" Width="100" ItemsSource="{Binding Reg08.OD}" SelectionChanged="CB_OD_SelectionChanged"/>
+                                <Label Content="OD"/>
+                            </StackPanel>-->
+                            <CheckBox Content="BST" Name="BST" Click="Reg08_Click"  IsChecked="{Binding Reg08.BST}"/>
+
+                        </StackPanel>
+                        <StackPanel Name="SPreg9" Grid.Column="4" Grid.Row="1">
+                            <StackPanel  Orientation="Horizontal">
+                                <ComboBox Name="CB_CP" Width="100" ItemsSource="{Binding Reg08.RFO}" SelectionChanged="CB_CP_SelectionChanged"/>
+                                <Label Content="CP"/>
+                            </StackPanel >
+                            <StackPanel  Orientation="Horizontal">
+                                <ComboBox Name="CB_LKCT" Width="100" ItemsSource="{Binding Reg08.RFO}" SelectionChanged="CB_LKCT_SelectionChanged"/>
+                                <Label Content="LKCT"/>
+                            </StackPanel>
+                            <StackPanel  Orientation="Horizontal">
+                                <ComboBox Name="CB_LKWIN" Width="100" SelectionChanged="CB_LKWIN_SelectionChanged" />
+                                <Label Content="LKWIN"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Name="SPregA" Grid.Column="5" Grid.Row="1">
+                            <CheckBox Content="CPDN" Name="CPDN" Click="Reg0A_Click" IsChecked="{Binding Reg0A.CPDN}"/>
+                            <CheckBox Content="CPUP" Name="CPUP" Click="Reg0A_Click" IsChecked="{Binding Reg0A.CPUP}"/>
+                            <CheckBox Content="CPRST" Name="CPRST" Click="Reg0A_Click" IsChecked="{Binding Reg0A.CPRST}"/>
+                            <CheckBox Content="CPWIDE" Name="CPWIDE" Click="Reg0A_Click" IsChecked="{Binding Reg0A.CPWIDE}"/>
+                            <CheckBox Content="CPINV" Name="CPINV" Click="Reg0A_Click" IsChecked="{Binding Reg0A.CPINV}"/>
+                            <CheckBox Content="CPMID" Name="CPMID" Click="Reg0A_Click" IsChecked="{Binding Reg0A.CPMID}"/>
+                            <CheckBox Content="CPCLO" Name="CPCLO" Click="Reg0A_Click" IsChecked="{Binding Reg0A.CPCLO}"/>
+                            <CheckBox Content="CPCHI" Name="CPCHI" Click="Reg0A_Click" IsChecked="{Binding Reg0A.CPCHI}"/>
+
+                        </StackPanel>
+
+                        <!--<TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding BoardNumber}"/>-->
+
+
+                        <StackPanel Orientation="Vertical" Margin="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
+                            <StackPanel Orientation="Horizontal" Margin="2">
+                                <xctk:IntegerUpDown  Value="{Binding N_Divider}" IsEnabled="False" ValueChanged="N_ValueChanged" Minimum="32" Maximum="65535" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Label Content="N divider"/>
+                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="2">
+                                <xctk:IntegerUpDown  Value="{Binding R_Divider}"  IsEnabled="False" ValueChanged="R_ValueChanged" Minimum="1" Maximum="1023" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Label Content=" R divider"/>
+                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="2">
+                                <xctk:IntegerUpDown  Value="{Binding O_Divider}" IsEnabled="False" ValueChanged="O_ValueChanged" Minimum="1" Maximum="6" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Label Content="O divider"/>
+                        </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="2">
+                                <xctk:IntegerUpDown  Value="{Binding B_Divider}" IsEnabled="False" ValueChanged="B_ValueChanged" Minimum="0" Maximum="11" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Label Content="B divider"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                        <StackPanel Orientation="Vertical"  Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2">
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBox Text="{Binding Path=ByteReg00,StringFormat={}0x{0:X2},Mode=OneWay}"  Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" Style="{x:Null}"/>
+                                <Label Content="Reg00"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBox Text="{Binding Path=ByteReg01,StringFormat={}0x{0:X2},Mode=OneWay}"  Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" Style="{x:Null}"/>
+                                <Label Content="Reg01"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBox Text="{Binding Path=ByteReg02,StringFormat={}0x{0:X2},Mode=OneWay}"  Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" Style="{x:Null}"/>
+                                <Label Content="Reg02"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBox Text="{Binding Path=ByteReg03,StringFormat={}0x{0:X2},Mode=OneWay}"  Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" Style="{x:Null}"/>
+                                <Label Content="Reg03"/>
+                            </StackPanel>
+
+ 
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Vertical"  Grid.Column="3"  Grid.Row="2">
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBox Text="{Binding Path=ByteReg04,StringFormat={}0x{0:X2},Mode=OneWay}"  Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" Style="{x:Null}"/>
+                                <Label Content="Reg04"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBox Text="{Binding Path=ByteReg05,StringFormat={}0x{0:X2},Mode=OneWay}"  Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" Style="{x:Null}"/>
+                                <Label Content="Reg05"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBox Text="{Binding Path=ByteReg06,StringFormat={}0x{0:X2},Mode=OneWay}"  Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" Style="{x:Null}"/>
+                                <Label Content="Reg06"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBox Text="{Binding Path=ByteReg07,StringFormat={}0x{0:X2},Mode=OneWay}"  Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" Style="{x:Null}"/>
+                                <Label Content="Reg07"/>
+                            </StackPanel>
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical"  Grid.Column="4"  Grid.Row="2">
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBox Text="{Binding Path=ByteReg08,StringFormat={}0x{0:X2},Mode=OneWay}"  Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" Style="{x:Null}"/>
+                                <Label Content="Reg08"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBox Text="{Binding Path=ByteReg09,StringFormat={}0x{0:X2},Mode=OneWay}"  Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" Style="{x:Null}"/>
+                                <Label Content="Reg09"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBox Text="{Binding Path=ByteReg0A,StringFormat={}0x{0:X2},Mode=OneWay}"  Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" Style="{x:Null}"/>
+                                <Label Content="Reg0A"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBox Text="{Binding Path=ByteReg0B,StringFormat={}0x{0:X2},Mode=OneWay}"  Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" Style="{x:Null}"/>
+                                <Label Content="Reg0B"/>
+                            </StackPanel>
+                            
+                        </StackPanel>
+
+
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Center" Width="200">
+                            <TextBlock TextAlignment="Center" TextWrapping="Wrap">
+                             Currently  Divider values are calulated
+                            from target frequencies only</TextBlock>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock></TextBlock>
+                        </StackPanel>
+                        <Button Grid.Column="2" Name="REgALLBoards" Click="REgALLBoards_Click" Width="150" >
+                            <StackPanel>
+                                <TextBlock> Copy Register Values</TextBlock>
+                                <TextBlock> To All Boards </TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        <!--</TabItem>
+            <TabItem Header="Security" />
+            <TabItem Header="Details" />
+        </TabControl>-->
+    </Grid>
+</Page>
